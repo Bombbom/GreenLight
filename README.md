@@ -54,3 +54,24 @@ go install github.com/rakyll/hey@latest
 - The remote 
 - The go.mod 
 - The Makefile 
+
+## Check
+- Endpoint: /v1/healthcheck
+
+```bash 
+go run ./cmd/api/
+```
+
+
+```bash 
+$ curl -i localhost:4000/v1/healthcheck
+HTTP/1.1 200 OK
+Date: Sun, 12 Oct 2025 13:55:02 GMT
+Content-Length: 58
+Content-Type: text/plain; charset=utf-8
+
+status: available
+environment: development
+version: 1.0.0
+```
+

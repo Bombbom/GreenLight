@@ -28,7 +28,7 @@ func main(){
 	flag.Parse() 
 
 
-	logger := slog.New(slog.NewtextHandler(os.Stdout, nil))
+	logger := slog.New(slog.NewTextHandler(os.Stdout, nil))
 
 	app := &application{
 		config: cfg, 
@@ -36,7 +36,7 @@ func main(){
 	}
 
 	mux := http.NewServeMux()
-	mux.HandleFunc("/v1/healthcheck", app.healthcheckhandler)
+	mux.HandleFunc("/v1/healthcheck", app.healthcheckHandler)
 
 	srv := &http.Server {
 		Addr: fmt.Sprintf(":%d", cfg.port), 
@@ -44,7 +44,7 @@ func main(){
 		IdleTimeout: time.Minute, 
 		ReadTimeout: 5* time.Second, 
 		WriteTimeout: 10*time.Second, 
-		ErrorLog: slog.NewLogger(logger.Handler(), slog.LevelError), 
+		ErrorLog: slog.NewLogLogger(logger.Handler(), slog.LevelError), 
 	}
 	logger.Info("starting server", "addr", srv.Addr, "env", cfg.env)
 	err := srv.ListenAndServe() 

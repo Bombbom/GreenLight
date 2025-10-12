@@ -29,3 +29,28 @@ go install github.com/rakyll/hey@latest
 | POST | /v1/tokens/authentication | Generate a new authentication token |
 | POST | /v1/tokens/password-reset | Generate a new password-reset token |
 | GET | /debug/vars | Display application metrics |
+
+## Project structure 
+
+```
+.
+├── Makefile
+├── README.md
+├── bin
+├── cmd
+│   └── api
+│       ├── healthcheck.go
+│       └── main.go
+├── go.mod
+├── internal
+├── migrations
+└── remote
+```
+
+- The bin directory will contain our compiled applicatio binaries, ready for deployment to a production server.
+- The cmd/api
+- The internal 
+- The migrations 
+- The remote 
+- The go.mod 
+- The Makefile 

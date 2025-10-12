@@ -11,6 +11,7 @@
 
 ```
 go install github.com/rakyll/hey@latest
+go get github.com/julienschmidt/httprouter@v1
 ```
 
 ## Greenlight API

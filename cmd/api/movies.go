@@ -5,6 +5,7 @@ import (
 	"net/http"
 	"time"
 	"greenlight.clone/internal/data"
+	"greenlight.clone/internal/validator"
 	// "encoding/json"
 	// "errors"
 	// "strconv"
@@ -24,6 +25,22 @@ func (app *application) createMovieHandler(w http.ResponseWriter, r *http.Reques
 	if err != nil {
 		// app.errorResponse(w, r, http.StatusBadRequest, err.Error())
 		app.badRequestResponse(w, r, err)
+		return 
+	}
+
+	movie := &data.Movie{
+		Title: input.Title, 
+		Year: input.Year, 
+		Runtime: input.Runtime, 
+		Genres: input.Genres, 
+	}
+
+	v := validator.New() 
+
+	
+
+	if data.ValidateMovie(v, movie); !v.Valid(){
+		app.failedValidationResponse(w, r, v.Errors)
 		return 
 	}
 

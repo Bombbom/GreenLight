@@ -5,7 +5,7 @@ import (
 	"net/http"
 	"time"
 	"greenlight.clone/internal/data"
-	"encoding/json"
+	// "encoding/json"
 	// "errors"
 	// "strconv"
 	// "github.com/julienschmidt/httprouter"
@@ -19,7 +19,8 @@ func (app *application) createMovieHandler(w http.ResponseWriter, r *http.Reques
 		Genres []string `json:"genres"` 
 	}
 
-	err := json.NewDecoder(r.Body).Decode(&input)
+	// err := json.NewDecoder(r.Body).Decode(&input)
+	err := app.readJSON(w, r, &input)
 	if err != nil {
 		app.errorResponse(w, r, http.StatusBadRequest, err.Error())
 		return 
